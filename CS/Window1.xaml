@@ -1,0 +1,34 @@
+﻿<Window x:Class="PageHeightDemo.Window1" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing" 
+        xmlns:local="clr-namespace:PageHeightDemo" 
+        Title="Window1"
+        Height="300" Width="300">
+    <Window.Resources>
+        <system:Double x:Key="pageHeaderHeight">40</system:Double>
+        <system:Double x:Key="pageFooterHeight">20</system:Double>
+        <DataTemplate x:Key="pageHeader">
+            <dxe:TextEdit Text="This is a page header" Background="LightGray" Height="{StaticResource pageHeaderHeight}" />
+        </DataTemplate>
+        <DataTemplate x:Key="detail">
+            <dxe:TextEdit Text="This is a sample text." HorizontalAlignment="Center" VerticalAlignment="Center" 
+                          dxp:ExportSettings.BorderColor="Blue" dxp:ExportSettings.BorderThickness="1" 
+                          Width="{Binding Path=UsablePageWidth, Mode=OneWay}">
+                <dxe:TextEdit.Height>
+                    <MultiBinding Converter="{local:UsableDetailPageHeightConverter}">
+                        <Binding Path="UsablePageHeight" Mode="OneWay"/>
+                        <Binding Source="{StaticResource pageHeaderHeight}" />
+                        <Binding Source="{StaticResource pageFooterHeight}" />
+                    </MultiBinding>
+                </dxe:TextEdit.Height>
+            </dxe:TextEdit>
+        </DataTemplate>
+        <DataTemplate x:Key="pageFooter">
+            <dxe:TextEdit Text="This is a page footer" Background="Yellow" Height="{StaticResource pageFooterHeight}" />
+        </DataTemplate>
+    </Window.Resources>
+    <Button Content="Show preview" Click="Button_Click" />
+</Window>
