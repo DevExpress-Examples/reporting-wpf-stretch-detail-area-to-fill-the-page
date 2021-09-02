@@ -1,5 +1,4 @@
-﻿Imports Microsoft.VisualBasic
-Imports System
+﻿Imports System
 Imports System.Windows.Data
 Imports System.Windows.Markup
 Imports System.Globalization
@@ -8,11 +7,12 @@ Namespace PageHeightDemo
 	Public Class UsableDetailPageHeightConverter
 		Inherits MarkupExtension
 		Implements IMultiValueConverter
+
 		Public Function Convert(ByVal values() As Object, ByVal targetType As Type, ByVal parameter As Object, ByVal culture As CultureInfo) As Object Implements IMultiValueConverter.Convert
-			Dim height As Double = CDbl(values(0))
+			Dim height As Double = DirectCast(values(0), Double)
 
 			For i As Integer = 1 To values.Length - 1
-				height -= CDbl(values(i))
+				height -= DirectCast(values(i), Double)
 			Next i
 
 			Return height
