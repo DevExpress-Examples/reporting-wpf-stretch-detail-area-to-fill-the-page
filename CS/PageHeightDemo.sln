@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageHeightDemo", "PageHeightDemo.csproj", "{6844874D-9B76-44B9-90F7-E1D8B98CF521}"
 EndProject
 Global
